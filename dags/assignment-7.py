@@ -30,7 +30,7 @@ s3_sensor = S3KeySensor(
 
 step_adder = EmrAddStepsOperator(
     task_id='trigger_spark_job_on_emr',
-    job_flow_id='j-2SPMXOJ98PXHP',
+    job_flow_id='j-G8AS0J9O46D1',
     aws_conn_id='aws_default',
     steps=[{
         'Name': 'Run PySpark Script',
@@ -50,7 +50,7 @@ step_adder = EmrAddStepsOperator(
 
 step_checker = EmrStepSensor(
     task_id='check_step',
-    job_flow_id='j-2SPMXOJ98PXHP',
+    job_flow_id='j-G8AS0J9O46D1',
     step_id="{{ task_instance.xcom_pull(task_ids='trigger_spark_job_on_emr', key='return_value')[0] }}",
     aws_conn_id='aws_default',
     poke_interval=120,  # Check every 2 minutes
