@@ -3,9 +3,6 @@ phases:
   install:
     runtime-versions:
       python: 3.12
-    commands:
-      - echo "Installing dependencies..."
-      - pip install zip
   build:
     commands:
       - echo "Zipping deployment package..."
