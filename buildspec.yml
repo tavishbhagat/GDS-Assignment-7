@@ -10,7 +10,7 @@ phases:
   post_build:
     commands:
       - echo "Uploading to S3..."
-      - unzip deployment_package.zip
+      - unzip -f deployment_package.zip
       - aws s3 cp s3_to_redshift_spark.py s3://gds-assignment-7-tavish/
       - aws s3 cp dags s3://gds-assignment-7-tavish/
       - echo "Deleting the zip file..."
