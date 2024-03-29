@@ -6,16 +6,13 @@ phases:
   build:
     commands:
       - echo "Zipping deployment package..."
-      - cd dags
-      - zip -r9 ../deployment_package.zip .
-      - cd ..
-      - zip -g deployment_package.zip s3_to_redshift_spark.py
+      - zip -r9 deployment_package.zip .
   post_build:
     commands:
       - echo "Uploading to S3..."
-      - aws s3 cp deployment_package.zip s3://gds-assignment-7-tavish/
-      - echo "Updating Lambda function via S3..."
       - unzip deployment_package.zip
+      - aws s3 cp s3_to_redshift_spark.py s3://gds-assignment-7-tavish/
+      - aws s3 cp dags s3://gds-assignment-7-tavish/
       - echo "Deleting the zip file..."
       - rm -rf deployment_package.zip
       - echo "Deployment complete!"
